@@ -71,14 +71,12 @@
 
   /* ── Property card ── */
   .property-card {
-    @apply bg-white overflow-hidden shadow-card hover:shadow-card-lg
-           transition-all cursor-pointer;
+    @apply bg-white overflow-hidden shadow-card hover:shadow-card-lg transition-all cursor-pointer;
     transition-duration: 400ms;
   }
 
   .property-card-img {
-    @apply w-full h-64 object-cover transition-transform duration-700
-           group-hover:scale-105;
+    @apply w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105;
   }
 
   /* ── Nav link ── */
@@ -89,8 +87,7 @@
 
   .nav-link::after {
     content: '';
-    @apply absolute -bottom-1 left-0 w-0 h-px bg-gold
-           transition-all duration-300;
+    @apply absolute -bottom-1 left-0 w-0 h-px bg-gold transition-all duration-300;
   }
 
   .nav-link:hover::after { @apply w-full; }
