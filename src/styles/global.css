@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy:      #1B2A3B;
+    --gold:      #C9A84C;
+    --gold-dark: #B8972E;
+    --cream:     #F5F2EC;
+    --white:     #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-cream-200 text-navy font-sans antialiased;
+    font-feature-settings: "liga" 1, "kern" 1;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif font-light tracking-tight;
+  }
+
+  ::selection {
+    background-color: rgba(201, 168, 76, 0.25);
+    color: #1B2A3B;
+  }
+
+  * { box-sizing: border-box; }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center gap-3 bg-gold text-navy-600 font-sans font-500
+           text-sm tracking-widest uppercase px-8 py-4
+           transition-all duration-300 hover:bg-gold-600 hover:shadow-gold-lg
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    letter-spacing: 0.15em;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-3 border border-gold text-gold font-sans
+           text-sm tracking-widest uppercase px-8 py-4
+           transition-all duration-300 hover:bg-gold hover:text-navy-600
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    letter-spacing: 0.15em;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center gap-3 border border-white/60 text-white font-sans
+           text-sm tracking-widest uppercase px-8 py-4
+           transition-all duration-300 hover:border-white hover:bg-white/10
+           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+    letter-spacing: 0.15em;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    @apply block font-sans text-xs tracking-[0.3em] uppercase text-gold-600 mb-4;
+  }
+
+  /* ── Gold rule ── */
+  .gold-rule {
+    @apply w-12 h-px bg-gold my-6;
+  }
+
+  /* ── Property card ── */
+  .property-card {
+    @apply bg-white overflow-hidden shadow-card hover:shadow-card-lg
+           transition-all duration-400 group cursor-pointer;
+  }
+
+  .property-card-img {
+    @apply w-full h-64 object-cover transition-transform duration-700
+           group-hover:scale-105;
+  }
+
+  /* ── Nav link ── */
+  .nav-link {
+    @apply font-sans text-xs tracking-[0.2em] uppercase text-white/80
+           hover:text-gold transition-colors duration-200 relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-px bg-gold
+           transition-all duration-300;
+  }
+
+  .nav-link:hover::after { @apply w-full; }
+
+  /* ── Stat card ── */
+  .stat-card {
+    @apply text-center px-8 py-6 border-r border-white/20 last:border-r-0;
+  }
+
+  /* ── Input ── */
+  .form-input {
+    @apply w-full bg-white border border-cream-400 text-navy text-sm
+           font-sans px-4 py-3 placeholder:text-navy/40
+           focus:outline-none focus:border-gold transition-colors duration-200;
+  }
+
+  /* ── Section container ── */
+  .container-site {
+    @apply max-w-site mx-auto px-6 lg:px-12;
+  }
+
+  /* ── Gold border accent ── */
+  .gold-frame {
+    @apply border border-gold/30 relative;
+  }
+
+  .gold-frame::before {
+    content: '';
+    @apply absolute top-3 left-3 right-3 bottom-3 border border-gold/20 pointer-events-none;
+  }
+
+  /* ── Testimonial ── */
+  .testimonial-card {
+    @apply bg-white p-8 shadow-card relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    @apply absolute top-4 left-6 font-serif text-6xl text-gold/20 leading-none;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .font-500 { font-weight: 500; }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+
+  .opacity-0-init { opacity: 0; }
+}

@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const areas = [
+  {
+    name: 'Alexandria, VA',
+    slug: 'alexandria',
+    tagline: 'Historic Charm Meets Modern Luxury',
+    body: 'From the cobblestone streets of Old Town to the waterfront condos along the Potomac, Alexandria is one of the most desirable addresses in the DC metro. Median home prices hover around $1.2M in Old Town, with strong demand from government professionals, Amazon HQ2 employees, and long-term residents who never want to leave.',
+    highlights: ['Old Town Historic District', 'Del Ray', 'Seminary Hill', 'Potomac Yard', 'Eisenhower Valley'],
+    medianPrice: '$977,000',
+    img: 'https://images.unsplash.com/photo-1587382668460-a06d85a1a0df?w=800&q=80',
+  },
+  {
+    name: 'Fairfax County, VA',
+    slug: 'fairfax',
+    tagline: 'Northern Virginia\'s Largest County',
+    body: 'Fairfax County encompasses some of the most prestigious zip codes in the country — from Great Falls estates to the walkable downtown of Fairfax City. With top-ranked schools, excellent commuter access, and a diverse range of homes at every price point, Fairfax is the heart of the Northern Virginia market.',
+    highlights: ['Fairfax City', 'Springfield', 'Reston', 'Great Falls', 'McLean', 'Vienna'],
+    medianPrice: '$750,000',
+    img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80',
+  },
+  {
+    name: 'Prince William County, VA',
+    slug: 'prince-william',
+    tagline: 'Room to Grow. Space to Breathe.',
+    body: 'Prince William County offers exceptional value compared to neighboring Fairfax — larger lots, newer construction, and more home for your money while still delivering easy access to DC via VRE, I-95, and I-66. A favorite for growing families and military personnel at Quantico.',
+    highlights: ['Manassas', 'Woodbridge', 'Gainesville', 'Bristow', 'Dumfries'],
+    medianPrice: '$525,000',
+    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+  },
+];
+---
+
+<BaseLayout
+  title="Areas We Serve | Gold Key Realty — Alexandria, Fairfax, Prince William"
+  description="Gold Key Realty serves Alexandria, Fairfax County, and Prince William County, VA. Expert local knowledge across the entire Bright MLS area south of DC.">
+
+  <!-- Hero -->
+  <section class="relative py-28 bg-navy-600 overflow-hidden">
+    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gold-shimmer opacity-70"></div>
+    <div class="container-site relative z-10 text-center">
+      <span class="section-label">Our Territory</span>
+      <h1 class="font-serif text-display text-white font-light mb-4">
+        South of DC.<br/><em class="text-gold not-italic">We Know Every Block.</em>
+      </h1>
+      <div class="gold-rule mx-auto"></div>
+      <p class="font-sans text-white/60 max-w-lg mx-auto">
+        Deep hyperlocal expertise across Alexandria, Fairfax County, and Prince William County.
+      </p>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  {areas.map((area, i) => (
+    <section class={`py-section ${i % 2 === 0 ? 'bg-cream-200' : 'bg-cream-100'}`}>
+      <div class="container-site">
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${i % 2 !== 0 ? 'direction-rtl' : ''}`}>
+
+          <!-- Image -->
+          <div class={`relative ${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
+            <div class="absolute -top-4 -left-4 w-full h-full border border-gold/30"></div>
+            <img
+              src={area.img}
+              alt={area.name}
+              class="w-full h-80 object-cover relative z-10"
+              loading="lazy"
+            />
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gold-shimmer z-20"></div>
+            <!-- Median price badge -->
+            <div class="absolute top-4 right-4 bg-navy-600/90 backdrop-blur-sm border border-gold/30 px-4 py-3 z-20">
+              <p class="font-sans text-[10px] text-gold/70 tracking-wider uppercase">Median Price</p>
+              <p class="font-serif text-xl text-white font-light">{area.medianPrice}</p>
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class={i % 2 !== 0 ? 'lg:order-1' : ''}>
+            <span class="section-label">{area.tagline}</span>
+            <h2 class="font-serif text-3xl text-navy font-light mb-4">{area.name}</h2>
+            <div class="gold-rule"></div>
+            <p class="font-sans text-navy/70 leading-loose mb-6">{area.body}</p>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+              {area.highlights.map(h => (
+                <span class="font-sans text-xs text-navy/60 border border-cream-400 px-3 py-1.5 bg-cream-100">
+                  {h}
+                </span>
+              ))}
+            </div>
+
+            <a href={`https://goldkeyrealtygrp.com/listing`}
+               target="_blank" rel="noopener"
+               class="btn-primary">
+              Search {area.name.split(',')[0]} Homes
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  ))}
+
+</BaseLayout>

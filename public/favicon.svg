@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1B2A3B"/>
+  <!-- Simplified key shape in gold -->
+  <circle cx="10" cy="14" r="5" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+  <circle cx="10" cy="14" r="2" fill="#C9A84C"/>
+  <rect x="14" y="13" width="12" height="2.5" rx="1" fill="#C9A84C"/>
+  <rect x="22" y="15.5" width="2.5" height="3" rx="0.5" fill="#C9A84C"/>
+  <rect x="18" y="15.5" width="2.5" height="2.5" rx="0.5" fill="#C9A84C"/>
+</svg>

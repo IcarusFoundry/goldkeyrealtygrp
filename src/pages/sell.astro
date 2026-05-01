@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sell Your Home | Gold Key Realty — Ken Stulik"
+  description="Ready to sell your Northern Virginia home? Ken Stulik at Gold Key Realty delivers strategic pricing, professional marketing, and top-dollar results. Get your free valuation today.">
+
+  <!-- Page hero -->
+  <section class="relative py-32 bg-navy-600 overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&q=70"
+           alt="" class="w-full h-full object-cover" loading="eager" aria-hidden="true" />
+    </div>
+    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gold-shimmer opacity-70"></div>
+    <div class="container-site relative z-10 text-center">
+      <span class="section-label">Selling With Gold Key Realty</span>
+      <h1 class="font-serif text-display text-white font-light mb-6">
+        Get Top Dollar.<br/><em class="text-gold not-italic">Every Time.</em>
+      </h1>
+      <div class="gold-rule mx-auto"></div>
+      <p class="font-sans text-white/60 max-w-xl mx-auto leading-relaxed mb-10">
+        From free valuation to sold sign — Ken's proven system is designed to
+        maximize your net proceeds and minimize your stress.
+      </p>
+      <a href="https://goldkeyrealtygrp.lofty.com/evaluation"
+         target="_blank" rel="noopener"
+         class="btn-primary">
+        Get My Free Home Valuation
+      </a>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-section bg-cream-200">
+    <div class="container-site">
+      <div class="text-center mb-16">
+        <span class="section-label">The GKR Selling Process</span>
+        <h2 class="font-serif text-display text-navy font-light">
+          How We Sell<br/><em class="text-gold not-italic">Your Home</em>
+        </h2>
+        <div class="gold-rule mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-cream-400">
+        {[
+          { step: '01', title: 'Free Valuation', body: 'We analyze active Bright MLS comps and your home\'s unique features to determine the optimal list price.' },
+          { step: '02', title: 'Strategic Prep', body: 'Professional photography, 3D tour, and staging consultation — your listing will stop scrollers in their tracks.' },
+          { step: '03', title: 'Maximum Exposure', body: 'Listed on Bright MLS, Zillow, Realtor.com, and our network of qualified buyers already in your target price range.' },
+          { step: '04', title: 'Negotiate & Close', body: 'Ken personally negotiates every offer. We don\'t just get offers — we get you the best terms.' },
+        ].map(s => (
+          <div class="bg-white p-10">
+            <p class="font-serif text-5xl text-gold/30 font-light mb-6 leading-none">{s.step}</p>
+            <h3 class="font-serif text-xl text-navy font-light mb-3">{s.title}</h3>
+            <p class="font-sans text-sm text-navy/60 leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Lofty valuation widget embed area -->
+  <section class="py-section bg-cream-100">
+    <div class="container-site max-w-3xl">
+      <div class="text-center mb-12">
+        <span class="section-label">Instant Report</span>
+        <h2 class="font-serif text-display text-navy font-light">
+          What Is Your Home Worth?
+        </h2>
+        <div class="gold-rule mx-auto"></div>
+      </div>
+
+      <!-- REPLACE with Lofty Home Valuation widget embed -->
+      <div class="bg-cream-400/50 border border-cream-400 p-12 text-center">
+        <p class="font-sans text-navy/40 text-sm mb-2">Lofty Home Valuation Widget</p>
+        <p class="font-sans text-navy/30 text-xs">
+          Paste your Lofty home valuation embed code here.<br/>
+          Found in Lofty → Website → Widgets → Home Valuation
+        </p>
+        <a href="https://goldkeyrealtygrp.lofty.com/evaluation"
+           target="_blank" rel="noopener"
+           class="btn-primary mt-8 inline-flex">
+          Open Valuation Tool
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

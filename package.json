@@ -1,0 +1,18 @@
+{
+  "name": "gold-key-realty",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Gold Key Realty — Ken Stulik | Northern Virginia Real Estate",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.15.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/sitemap": "^3.1.0",
+    "tailwindcss": "^3.4.0"
+  }
+}

@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About Ken Stulik | Gold Key Realty — Northern Virginia REALTOR"
+  description="Meet Ken Stulik, trusted Northern Virginia REALTOR at Gold Key Realty. Serving Alexandria, Fairfax, and Prince William County with 15+ years of local expertise.">
+
+  <!-- Hero -->
+  <section class="relative py-32 bg-navy-600 overflow-hidden">
+    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gold-shimmer opacity-70"></div>
+    <div class="container-site relative z-10">
+      <span class="section-label">The Team</span>
+      <h1 class="font-serif text-display text-white font-light">
+        People Who Put<br/>
+        <em class="text-gold not-italic">You First.</em>
+      </h1>
+      <div class="gold-rule"></div>
+    </div>
+  </section>
+
+  <!-- Ken -->
+  <section class="py-section bg-cream-200">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div>
+          <div class="relative">
+            <div class="absolute -top-4 -left-4 w-full h-full border border-gold/30"></div>
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80"
+              alt="Ken Stulik, REALTOR — Gold Key Realty"
+              class="w-full object-cover object-top relative z-10"
+              style="aspect-ratio: 4/5; max-height: 600px;"
+              loading="lazy"
+            />
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gold-shimmer z-20"></div>
+          </div>
+          <!-- Replace the above img src with Ken's actual professional photo -->
+        </div>
+
+        <div class="pt-4">
+          <span class="section-label">Lead Agent</span>
+          <h2 class="font-serif text-4xl text-navy font-light mb-2">Ken Stulik</h2>
+          <p class="font-sans text-gold text-sm tracking-widest uppercase mb-2">REALTOR® | Gold Key Realty</p>
+          <p class="font-sans text-navy/40 text-sm mb-8">License #VA-0123456 | Bright MLS Subscriber</p>
+          <div class="gold-rule"></div>
+
+          <p class="font-sans text-navy/70 leading-loose mb-5">
+            Ken Stulik has spent over 15 years earning trust across Northern Virginia — from the cobblestoned streets of Old Town Alexandria
+            to the growing communities of Prince William County. He built Gold Key Realty around a single principle: every client deserves
+            honest guidance and relentless representation, whether the transaction is $300,000 or $3 million.
+          </p>
+          <p class="font-sans text-navy/70 leading-loose mb-8">
+            Ken's approach is simple: listen first, advise second, execute flawlessly. He doesn't sell homes — he helps people
+            make the most important financial decisions of their lives with confidence and clarity.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 mb-10">
+            {[
+              { val: '400+', lbl: 'Transactions Closed' },
+              { val: '$120M+', lbl: 'Volume Sold' },
+              { val: '5.0★', lbl: 'Google Rating' },
+              { val: '15+', lbl: 'Years in NoVA' },
+            ].map(s => (
+              <div class="bg-cream-100 border border-cream-400 p-5">
+                <p class="font-serif text-2xl text-gold font-light">{s.val}</p>
+                <p class="font-sans text-xs text-navy/50 uppercase tracking-wider mt-1">{s.lbl}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="flex gap-4 flex-wrap">
+            <a href="tel:7033093527" class="btn-primary">Call Ken: (703) 309-3527</a>
+            <a href="/contact" class="btn-outline">Send a Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alex -->
+  <section class="py-section bg-cream-100">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <div class="lg:order-2">
+          <div class="relative">
+            <div class="absolute -top-4 -right-4 w-full h-full border border-gold/30"></div>
+            <img
+              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80"
+              alt="Alex Trahan, Director of Technology — Gold Key Realty"
+              class="w-full object-cover object-top relative z-10"
+              style="aspect-ratio: 4/5; max-height: 600px;"
+              loading="lazy"
+            />
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gold-shimmer z-20"></div>
+            <!-- Replace img src with Alex's actual photo -->
+          </div>
+        </div>
+
+        <div class="lg:order-1 pt-4">
+          <span class="section-label">Technology & Digital Strategy</span>
+          <h2 class="font-serif text-4xl text-navy font-light mb-2">Alex Trahan</h2>
+          <p class="font-sans text-gold text-sm tracking-widest uppercase mb-8">Director of Technology</p>
+          <div class="gold-rule"></div>
+
+          <p class="font-sans text-navy/70 leading-loose mb-5">
+            Alex Trahan is the technological force behind Gold Key Realty's digital edge. As Director of Technology,
+            Alex ensures that every listing reaches the maximum audience, every lead is captured and nurtured,
+            and every client interaction is backed by intelligent systems.
+          </p>
+          <p class="font-sans text-navy/70 leading-loose mb-8">
+            From Lofty CRM optimization to SEO strategy, digital advertising, and the technology infrastructure
+            behind this site — Alex keeps Gold Key Realty at the forefront of modern real estate practice
+            in the Northern Virginia market.
+          </p>
+
+          <div class="flex gap-4 flex-wrap">
+            <a href="/contact" class="btn-primary">Work With Our Team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
