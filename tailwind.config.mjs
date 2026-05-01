@@ -96,6 +96,9 @@ export default {
       borderWidth: {
         '0.5': '0.5px',
       },
+      transitionDuration: {
+        '400': '400ms',
+      },
     },
   },
   plugins: [],
