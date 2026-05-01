@@ -35,10 +35,11 @@
 @layer components {
   /* ── Buttons ── */
   .btn-primary {
-    @apply inline-flex items-center gap-3 bg-gold text-navy-600 font-sans font-500
+    @apply inline-flex items-center gap-3 bg-gold text-navy-600 font-sans
            text-sm tracking-widest uppercase px-8 py-4
            transition-all duration-300 hover:bg-gold-600 hover:shadow-gold-lg
            focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    font-weight: 500;
     letter-spacing: 0.15em;
   }
 
@@ -71,7 +72,8 @@
   /* ── Property card ── */
   .property-card {
     @apply bg-white overflow-hidden shadow-card hover:shadow-card-lg
-           transition-all duration-400 group cursor-pointer;
+           transition-all cursor-pointer;
+    transition-duration: 400ms;
   }
 
   .property-card-img {
@@ -133,7 +135,7 @@
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
-  .font-500 { font-weight: 500; }
+
   .delay-100 { animation-delay: 100ms; }
   .delay-200 { animation-delay: 200ms; }
   .delay-300 { animation-delay: 300ms; }
