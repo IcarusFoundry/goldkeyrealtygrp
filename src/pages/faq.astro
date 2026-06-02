@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    id: 'buyer-cost',
+    q: 'Does it cost me anything to have a buyer\'s agent representing me?',
+    a: '<strong>No.</strong> You will have no fees paid to us at closing. Our commissions are paid by the seller of the property you buy. We also charge no retainer fees, cancellation fees, or admin fees — unlike some brokerages.',
+    color: 'navy',
+  },
+  {
+    id: 'new-construction',
+    q: 'Can you help me find new construction homes?',
+    a: '<strong>Yes.</strong> We work with most builders and will accompany you on your first visit. By using our services with a new construction purchase, you receive our full guidance and fiduciary expertise — and our commission is paid entirely by the builder.',
+    color: 'gold',
+  },
+  {
+    id: 'timeline',
+    q: 'How long does the homebuying process take?',
+    a: 'When financing with a loan, plan for <strong>about one month from ratification to closing</strong>. Finding the right home varies — in high-demand markets, multiple offers may push the timeline to several months. Most of our buyers close within <strong>3 months</strong> of our first meeting.',
+    color: 'navy',
+  },
+  {
+    id: 'obligation',
+    q: 'If I formally hire a Realtor, am I obligated to buy?',
+    a: '<strong>No.</strong> There is never an obligation to buy. Gold Key Realty charges no cancellation or retainer fees. You can stop your search at any time, for any reason, at no cost.',
+    color: 'gold',
+  },
+  {
+    id: 'timing',
+    q: 'Should I buy now or wait for prices or rates to come down?',
+    a: 'History is clear: <strong>prices and rates rarely fall at the same time.</strong> The best long-term strategy is to buy when you are ready and refinance when rates improve. Waiting often means paying more, or missing the opportunity entirely.',
+    color: 'navy',
+  },
+  {
+    id: 'preapproval',
+    q: 'What is the difference between pre-qualification and pre-approval?',
+    a: 'Pre-qualification is a quick estimate based on self-reported information. <strong>Pre-approval is a verified commitment</strong> — the lender has reviewed your income, assets, and credit. In competitive markets like Northern Virginia, sellers expect pre-approval, not just pre-qualification.',
+    color: 'gold',
+  },
+  {
+    id: 'closing-costs',
+    q: 'How much should I budget for closing costs?',
+    a: 'Buyers in Virginia typically pay <strong>2–5% of the purchase price</strong> in closing costs. This includes lender fees, title insurance, recording fees, and prepaid items like homeowners insurance and property taxes. Your lender will provide a Loan Estimate within 3 days of your application with full details.',
+    color: 'navy',
+  },
+  {
+    id: 'inspection',
+    q: 'Do I need a home inspection?',
+    a: '<strong>Yes — always.</strong> A home inspection is one of the most important steps in the buying process. It gives you a detailed understanding of the property\'s condition before you\'re legally obligated to complete the purchase. Ken works with trusted local inspectors and will be present at every inspection.',
+    color: 'gold',
+  },
+];
+---
+
+<BaseLayout
+  title="Frequently Asked Questions | Gold Key Realty — Northern Virginia"
+  description="Answers to the most common questions from home buyers in Northern Virginia. Gold Key Realty — Ken Stulik, REALTOR®.">
+
+  <!-- Hero -->
+  <section class="relative py-28 bg-navy-600 overflow-hidden">
+    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gold-shimmer opacity-70"></div>
+    <div class="container-site relative z-10">
+      <span class="section-label">Common Questions, Straight Answers</span>
+      <h1 class="font-serif text-display text-white font-light mb-4">
+        Frequently Asked<br/><em class="text-gold not-italic">Questions</em>
+      </h1>
+      <div class="gold-rule"></div>
+      <p class="font-sans text-white/60 max-w-xl leading-relaxed">
+        These are the questions we hear most often from buyers across Northern Virginia.
+        Don't see yours? <a href="/contact" class="text-gold hover:text-gold-300 transition-colors">Ask Ken directly.</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="py-section bg-cream-200">
+    <div class="container-site max-w-3xl">
+
+      <!-- Jump links -->
+      <div class="bg-white border border-cream-400 p-6 mb-12">
+        <p class="font-sans text-xs tracking-widest uppercase text-navy/40 mb-4">Jump to a question</p>
+        <div class="flex flex-wrap gap-2">
+          {faqs.map(f => (
+            <a href={`#${f.id}`}
+               class="font-sans text-xs text-navy border border-navy/20 px-3 py-1.5
+                      hover:border-gold hover:text-gold transition-colors">
+              {f.q.split('?')[0].replace(/^(Does|Can|How|If|Should|What|Do)\s/i, '')}?
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="flex flex-col gap-4">
+        {faqs.map((faq, i) => (
+          <div id={faq.id} class="scroll-mt-32 bg-white shadow-card overflow-hidden">
+            <!-- Q header -->
+            <button
+              class={`w-full text-left flex items-start gap-4 p-6 group
+                      ${faq.color === 'navy' ? 'bg-navy-600 hover:bg-navy-700' : 'bg-gold hover:bg-gold-600'}
+                      transition-colors duration-200`}
+              onclick="this.parentElement.querySelector('.faq-body').classList.toggle('hidden');
+                       this.querySelector('.faq-icon').classList.toggle('rotate-45');"
+              aria-expanded="false">
+              <span class={`font-serif text-2xl font-light leading-none mt-0.5 shrink-0
+                            ${faq.color === 'navy' ? 'text-gold/40' : 'text-navy/30'}`}>
+                Q
+              </span>
+              <p class={`font-sans text-sm font-medium leading-relaxed flex-1
+                         ${faq.color === 'navy' ? 'text-white' : 'text-navy'}`}>
+                {faq.q}
+              </p>
+              <svg class="faq-icon w-5 h-5 shrink-0 mt-0.5 transition-transform duration-300
+                          text-gold/60"
+                   fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+              </svg>
+            </button>
+            <!-- A body -->
+            <div class="faq-body hidden">
+              <div class="p-6 border-t-2 border-gold/20">
+                <p class="font-sans text-sm text-navy/70 leading-loose" set:html={faq.a}></p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Still have questions CTA -->
+      <div class="mt-16 bg-navy-600 p-10 text-center">
+        <span class="section-label" style="color: rgba(201,168,76,0.8)">Still have questions?</span>
+        <h2 class="font-serif text-2xl text-white font-light mb-4">
+          Ask Ken directly — no pressure, no obligation.
+        </h2>
+        <div class="gold-rule mx-auto"></div>
+        <div class="flex gap-4 justify-center flex-wrap mt-6">
+          <a href="tel:7033093527" class="btn-outline">
+            Call (703) 309-3527
+          </a>
+          <a href="/contact" class="btn-primary">
+            Send a Message
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
