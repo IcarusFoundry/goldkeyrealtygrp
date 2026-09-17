@@ -1,0 +1,152 @@
+---
+export interface Props {
+  limit?: number;
+  showViewAll?: boolean;
+}
+
+const { limit = 3, showViewAll = false } = Astro.props;
+
+const workerUrl = import.meta.env.PUBLIC_LISTINGS_WORKER_URL as string | undefined;
+const containerId = `live-listings-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="live-listings-root">
+
+  {!workerUrl && (
+    <div class="bg-white border border-cream-400 p-16 text-center">
+      <p class="font-serif text-2xl text-navy/60 font-light mb-2">Listings loading…</p>
+      <p class="font-sans text-sm text-navy/40 max-w-md mx-auto">
+        Live Bright MLS listings will appear here once the Lofty feed is connected.
+        In the meantime, browse the full search below.
+      </p>
+      <a href="https://goldkeyrealtygrp.com/listing"
+         target="_blank" rel="noopener"
+         class="btn-outline mt-6 text-[11px]">
+        Search All Listings
+      </a>
+    </div>
+  )}
+
+  {workerUrl && (
+    <div id={containerId} class="live-listings-container" data-worker-url={workerUrl} data-limit={limit}>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 live-listings-grid">
+        {Array.from({ length: limit }).map(() => (
+          <div class="bg-white shadow-card overflow-hidden animate-pulse">
+            <div class="h-64 bg-cream-400"></div>
+            <div class="p-6">
+              <div class="h-6 w-24 bg-cream-400 mb-3"></div>
+              <div class="h-4 w-40 bg-cream-400 mb-2"></div>
+              <div class="h-3 w-28 bg-cream-400"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="live-listings-status font-sans text-xs text-navy/30 text-center mt-6">
+        Loading current listings…
+      </p>
+    </div>
+  )}
+
+  {workerUrl && showViewAll && (
+    <div class="text-center mt-8 md:hidden">
+      <a href="https://goldkeyrealtygrp.com/listing"
+         target="_blank" rel="noopener"
+         class="btn-outline">
+        View All Listings
+      </a>
+    </div>
+  )}
+
+</div>
+
+<script>
+  function escapeHtml(str: string): string {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function formatPrice(price: number | string): string {
+    const num = typeof price === 'string' ? Number(price.replace(/[^0-9.]/g, '')) : price;
+    if (!num || Number.isNaN(num)) return typeof price === 'string' ? price : '';
+    return `$${num.toLocaleString('en-US')}`;
+  }
+
+  function renderCard(listing: any): string {
+    const status = escapeHtml(listing.status || 'For Sale');
+    const address = escapeHtml(listing.address || '');
+    const city = escapeHtml(listing.city || '');
+    const price = formatPrice(listing.price);
+    const beds = listing.beds ?? '—';
+    const baths = listing.baths ?? '—';
+    const sqft = listing.sqft ? Number(listing.sqft).toLocaleString('en-US') : '—';
+    const photo = listing.photo || '';
+    const url = listing.url || 'https://goldkeyrealtygrp.com/listing';
+    const mlsId = listing.mlsId ? escapeHtml(String(listing.mlsId)) : '';
+
+    return `
+      <a href="${url}" target="_blank" rel="noopener" class="property-card">
+        <div class="relative overflow-hidden h-64">
+          ${photo
+            ? `<img src="${photo}" alt="${address}, ${city}" class="property-card-img" loading="lazy" />`
+            : `<div class="w-full h-64 bg-cream-400"></div>`}
+          <span class="absolute top-4 left-4 font-sans text-[10px] tracking-[0.2em] uppercase bg-gold text-navy px-3 py-1">
+            ${status}
+          </span>
+          ${mlsId
+            ? `<span class="absolute bottom-4 right-4 font-sans text-[10px] tracking-widest uppercase text-white/50 bg-navy-600/60 px-2 py-1">MLS# ${mlsId}</span>`
+            : ''}
+        </div>
+        <div class="p-6">
+          <p class="font-serif text-2xl text-navy font-light mb-1">${price}</p>
+          <p class="font-sans text-sm font-500 text-navy mb-0.5">${address}</p>
+          <p class="font-sans text-xs text-navy/50 mb-5">${city}</p>
+          <div class="flex gap-6 pt-4 border-t border-cream-400">
+            <div class="text-center">
+              <p class="font-serif text-lg text-navy">${beds}</p>
+              <p class="font-sans text-[10px] text-navy/40 uppercase tracking-wider">Beds</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-lg text-navy">${baths}</p>
+              <p class="font-sans text-[10px] text-navy/40 uppercase tracking-wider">Baths</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-lg text-navy">${sqft}</p>
+              <p class="font-sans text-[10px] text-navy/40 uppercase tracking-wider">Sq Ft</p>
+            </div>
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  async function loadListings(container: HTMLElement) {
+    const workerUrl = container.dataset.workerUrl;
+    const limit = container.dataset.limit || '3';
+    const grid = container.querySelector('.live-listings-grid');
+    const status = container.querySelector('.live-listings-status');
+    if (!workerUrl || !grid) return;
+
+    try {
+      const res = await fetch(`${workerUrl.replace(/\/$/, '')}/listings?limit=${limit}`);
+      if (!res.ok) throw new Error(`Worker responded ${res.status}`);
+      const data = await res.json();
+      const listings = Array.isArray(data) ? data : data.listings;
+
+      if (!Array.isArray(listings) || listings.length === 0) {
+        status && (status.textContent = 'No active listings found right now — check back soon.');
+        grid.innerHTML = '';
+        return;
+      }
+
+      grid.innerHTML = listings.map(renderCard).join('');
+      status && status.remove();
+    } catch (err) {
+      status && (status.textContent = 'Live listings are temporarily unavailable — please check back shortly.');
+      grid.innerHTML = '';
+      console.error('LiveListings fetch failed:', err);
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('.live-listings-container').forEach(loadListings);
+</script>

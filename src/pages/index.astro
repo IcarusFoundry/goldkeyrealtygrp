@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LiveListings from '../components/LiveListings.astro';
 
 const stats = [
   { value: '$120M+', label: 'Real Estate Sold' },
@@ -56,35 +57,6 @@ const testimonials = [
   },
 ];
 
-const featuredListings = [
-  {
-    address: '5501 Ashley Rd',
-    city: 'Fairfax, VA 22030',
-    price: '$1,050,000',
-    beds: 5, baths: 4, sqft: '5,000+',
-    status: 'Featured',
-    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-    loftyUrl: 'https://goldkeyrealtygrp.com/listing',
-  },
-  {
-    address: '1090 Mill Field Ct',
-    city: 'Great Falls, VA 22066',
-    price: '$2,495,000',
-    beds: 4, baths: 6, sqft: '6,723',
-    status: 'Just Listed',
-    img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80',
-    loftyUrl: 'https://goldkeyrealtygrp.com/listing',
-  },
-  {
-    address: '13514 Ryton Ridge Ln',
-    city: 'Gainesville, VA 20155',
-    price: '$950,000',
-    beds: 4, baths: 4, sqft: '4,376',
-    status: 'For Sale',
-    img: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-    loftyUrl: 'https://goldkeyrealtygrp.com/listing',
-  },
-];
 ---
 
 <BaseLayout
@@ -293,61 +265,7 @@ const featuredListings = [
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {featuredListings.map((listing, i) => (
-          <a href={listing.loftyUrl}
-             target="_blank" rel="noopener"
-             class="property-card opacity-0-init" data-animate style={`animation-delay:${i * 150}ms`}>
-
-            <!-- Image -->
-            <div class="relative overflow-hidden h-64">
-              <img
-                src={listing.img}
-                alt={`${listing.address}, ${listing.city}`}
-                class="property-card-img"
-                loading="lazy"
-              />
-              <!-- Status badge -->
-              <span class="absolute top-4 left-4 font-sans text-[10px] tracking-[0.2em] uppercase
-                           bg-gold text-navy px-3 py-1">
-                {listing.status}
-              </span>
-            </div>
-
-            <!-- Info -->
-            <div class="p-6">
-              <p class="font-serif text-2xl text-navy font-light mb-1">{listing.price}</p>
-              <p class="font-sans text-sm font-500 text-navy mb-0.5">{listing.address}</p>
-              <p class="font-sans text-xs text-navy/50 mb-5">{listing.city}</p>
-
-              <!-- Stats -->
-              <div class="flex gap-6 pt-4 border-t border-cream-400">
-                <div class="text-center">
-                  <p class="font-serif text-lg text-navy">{listing.beds}</p>
-                  <p class="font-sans text-[10px] text-navy/40 uppercase tracking-wider">Beds</p>
-                </div>
-                <div class="text-center">
-                  <p class="font-serif text-lg text-navy">{listing.baths}</p>
-                  <p class="font-sans text-[10px] text-navy/40 uppercase tracking-wider">Baths</p>
-                </div>
-                <div class="text-center">
-                  <p class="font-serif text-lg text-navy">{listing.sqft}</p>
-                  <p class="font-sans text-[10px] text-navy/40 uppercase tracking-wider">Sq Ft</p>
-                </div>
-              </div>
-            </div>
-
-          </a>
-        ))}
-      </div>
-
-      <div class="text-center mt-8 md:hidden">
-        <a href="https://goldkeyrealtygrp.com/listing"
-           target="_blank" rel="noopener"
-           class="btn-outline">
-          View All Listings
-        </a>
-      </div>
+      <LiveListings limit={3} showViewAll={true} />
 
     </div>
   </section>
